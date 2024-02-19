@@ -1,0 +1,2 @@
+class Packedsale < ApplicationRecord
+end
