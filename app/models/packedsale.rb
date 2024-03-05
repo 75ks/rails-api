@@ -21,4 +21,12 @@ class Packedsale < ApplicationRecord
     SQL
     )
   end
+
+  def self.find_by_psales_no(psales_no)
+    find_by(psales_no: psales_no)
+  end
+
+  def self.after_september_1994
+    where('psales_date >= ?', Date.new(1994, 9))
+  end
 end
