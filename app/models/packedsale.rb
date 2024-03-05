@@ -29,4 +29,9 @@ class Packedsale < ApplicationRecord
   def self.after_september_1994
     where('psales_date >= ?', Date.new(1994, 9))
   end
+
+  # 税抜売上合計金額を計算
+  def net_total
+    total - excise
+  end
 end

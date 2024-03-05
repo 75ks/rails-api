@@ -21,4 +21,15 @@ class PackedsalesController < ApplicationController
     packedsales = Packedsale.after_september_1994
     render json: packedsales
   end
+
+  def net_totals
+    packedsales = Packedsale.all
+    net_totals = packedsales.map do |packedsale|
+      {
+        psales_no: packedsale.psales_no,
+        net_total: packedsale.net_total
+      }
+    end
+    render json: net_totals
+  end
 end
