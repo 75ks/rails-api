@@ -32,4 +32,9 @@ class PackedsalesController < ApplicationController
     end
     render json: net_totals
   end
+
+  def employee
+    employee = Packedsale.employee(params[:psales_no])
+    render json: employee
+  end
 end

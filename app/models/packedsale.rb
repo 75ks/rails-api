@@ -1,5 +1,6 @@
 class Packedsale < ApplicationRecord
   has_many :sales, primary_key: :psales_no, foreign_key: :psales_no
+  belongs_to :employee, foreign_key: :emp_id
 
   def self.with_sales
     joins(:sales).select(<<-SQL
@@ -33,5 +34,10 @@ class Packedsale < ApplicationRecord
   # 税抜売上合計金額を計算
   def net_total
     total - excise
+  end
+
+  def self.employee(psales_no)
+    packedsale = Packedsale.find_by(psales_no: psales_no)
+    Employee.find_by(id: packedsale.emp_id)
   end
 end
